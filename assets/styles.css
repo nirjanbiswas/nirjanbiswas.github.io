@@ -1,0 +1,345 @@
+/* Nirjan Biswas — site-wide modern stylesheet
+   Preserves the original per-page background accent colors while giving
+   the whole site a clean, readable, responsive layout. */
+
+:root {
+    --accent: #0f8f46;
+    --accent-dark: #0a6d34;
+    --link: #1f4dd8;
+    --link-hover: #0a2a99;
+    --text: #1b2431;
+    --muted: #4a5568;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(15, 143, 70, 0.18);
+    --card-shadow: 0 12px 32px rgba(15, 32, 60, 0.10);
+    --radius: 14px;
+    --max-width: 1080px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    color: var(--text);
+    font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    background-color: #9fe2bf;
+}
+
+body.page-research  { background-color: #8dd1d1; }
+body.page-talks     { background-color: #b8e6fe; }
+body.page-teaching  { background-color: #98b9e7; }
+body.page-links     { background-color: #e0ffff; }
+
+img { max-width: 100%; height: auto; }
+
+a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+}
+a:hover, a:focus {
+    color: var(--link-hover);
+    border-bottom-color: currentColor;
+}
+
+/* ---------- Top navigation ---------- */
+.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: saturate(140%) blur(8px);
+    background: rgba(255, 255, 255, 0.75);
+    border-bottom: 1px solid rgba(15, 32, 60, 0.08);
+}
+.site-nav .nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.site-nav .brand {
+    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--accent-dark);
+    letter-spacing: .3px;
+    border-bottom: none;
+}
+.site-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.site-nav a.nav-link {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+    font-weight: 600;
+    color: var(--accent-dark);
+    border-bottom: none;
+    transition: background .15s ease, color .15s ease;
+}
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus {
+    background: var(--accent);
+    color: #fff;
+}
+.site-nav a.nav-link.active {
+    background: var(--accent-dark);
+    color: #fff;
+}
+
+/* ---------- Container ---------- */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+}
+
+/* ---------- Hero (index) ---------- */
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
+    gap: 32px;
+    align-items: start;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--card-shadow);
+}
+.hero-text h1 {
+    margin: 0 0 6px;
+    font-size: clamp(2rem, 4vw + 1rem, 3.2rem);
+    line-height: 1.1;
+    color: #1f2a80;
+    letter-spacing: -0.5px;
+}
+.hero-text .tagline {
+    margin: 0 0 18px;
+    font-size: 1.25rem;
+    color: var(--accent-dark);
+    font-weight: 600;
+}
+.hero-text p { margin: 0 0 14px; }
+
+.hero-photo {
+    position: sticky;
+    top: 84px;
+}
+.hero-photo figure {
+    margin: 0;
+    background: #fff;
+    padding: 10px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 26px rgba(15, 32, 60, 0.15);
+    border: 1px solid rgba(15, 32, 60, 0.08);
+    transform: rotate(-0.5deg);
+    transition: transform .25s ease;
+}
+.hero-photo figure:hover { transform: rotate(0deg) translateY(-2px); }
+.hero-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center 20%;
+}
+.hero-photo figcaption {
+    margin-top: 10px;
+    text-align: center;
+    font-size: .9rem;
+    color: var(--muted);
+}
+
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-weight: 700;
+    font-size: .95rem;
+    border: 2px solid var(--accent-dark);
+    background: var(--accent-dark);
+    color: #fff !important;
+    border-bottom: 2px solid var(--accent-dark);
+    box-shadow: 0 4px 12px rgba(15, 143, 70, 0.25);
+}
+.btn:hover, .btn:focus {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff !important;
+    transform: translateY(-1px);
+}
+.btn.btn-outline {
+    background: transparent;
+    color: var(--accent-dark) !important;
+    box-shadow: none;
+}
+.btn.btn-outline:hover {
+    background: var(--accent-dark);
+    color: #fff !important;
+}
+
+/* ---------- Cards / sections ---------- */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-top: 28px;
+    box-shadow: var(--card-shadow);
+}
+.card h2 {
+    margin: 0 0 16px;
+    color: var(--accent-dark);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 1.35rem;
+    letter-spacing: .3px;
+}
+.card ul { padding-left: 20px; margin: 0; }
+.card li { margin: 6px 0; }
+
+.link-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+.link-chips a {
+    display: inline-block;
+    padding: 8px 14px;
+    background: #fff;
+    border-radius: 999px;
+    border: 1px solid var(--card-border);
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(15, 32, 60, 0.05);
+}
+.link-chips a:hover {
+    background: var(--link);
+    color: #fff;
+    border-color: var(--link);
+}
+
+.timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    border-radius: 2px;
+}
+.timeline li {
+    position: relative;
+    padding: 8px 0 8px 32px;
+}
+.timeline li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 16px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(15, 143, 70, 0.15);
+}
+.timeline .when {
+    display: inline-block;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-weight: 700;
+    color: var(--accent-dark);
+    margin-right: 8px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+.contact-grid .item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--card-border);
+}
+.contact-grid .label {
+    font-size: .85rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+/* ---------- Legacy content wrapper (research/talks/teaching) ---------- */
+.legacy-content {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    box-shadow: var(--card-shadow);
+    margin-top: 20px;
+}
+.legacy-content img { border-radius: 10px; }
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    padding: 24px 12px 40px;
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 820px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 24px;
+    }
+    .hero-photo {
+        order: -1;
+        position: static;
+        max-width: 340px;
+        margin: 0 auto;
+    }
+    .card { padding: 22px; }
+}
+@media (max-width: 480px) {
+    body { font-size: 16px; }
+    .site-nav .nav-inner { padding: 10px 16px; }
+    .container { padding: 20px 14px 40px; }
+    .hero-text h1 { font-size: 2rem; }
+}
